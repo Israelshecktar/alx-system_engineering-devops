@@ -1,1 +1,1 @@
-redirection readme
+please read this
