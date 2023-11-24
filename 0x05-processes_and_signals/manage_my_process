@@ -4,12 +4,6 @@
 # - In between every I am alive! message,
 #+  the program should pause for 2 seconds
 
-tmp_file="/tmp/my_process"
-
-terminate(){
-	rm "$pid_file"
-}
-
 
 while true
 do

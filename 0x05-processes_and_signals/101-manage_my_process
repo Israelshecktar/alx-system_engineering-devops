@@ -1,22 +1,29 @@
 #!/usr/bin/env bash
 # Bash script that manages manage_my_process
 
-pid_file="/var/run/my_process.pid"
-
-terminate(){
-	rm "$pid_file"
-}
-
-create_pid_file(){
-	echo "$$" > "$pid_file"
-}
-
-usage_error(){
-	echo "Usage: manage_my_process {start|stop|restart}"
-}
-
-if [ $# -ne 1 ]; then
-	usage_error
-elif [ "$1" != "start" ] && [ "$1" != "stop" ]; then
-	usage_error
-fi
+PIDFILE=/var/run/my_process.pid
+case "$1" in
+    start)
+        bash /path-to/manage_my_process >/dev/null 2>&1 &
+        echo $! > ${PIDFILE}
+        echo "manage_my_process started"
+        ;;
+    stop)
+        kill $(cat ${PIDFILE})
+        rm ${PIDFILE}
+        echo "manage_my_process stopped"
+        ;;
+    restart)
+        if [ -f ${PIDFILE} ]; then
+            kill $(cat ${PIDFILE})
+            rm ${PIDFILE}
+            echo "manage_my_process stopped"
+        fi
+        bash /path-to/manage_my_process >/dev/null 2>&1 &
+        echo $! > ${PIDFILE}
+        echo "manage_my_process restarted"
+        ;;
+    *)
+        echo "Usage: manage_my_process {start|stop|restart}"
+        ;;
+esac
