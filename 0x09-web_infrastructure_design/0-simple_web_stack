@@ -1,0 +1,23 @@
+https://drive.google.com/file/d/1-P2pkNgHCXTuR4YeSc8_QRlqeD-DWgxW/view?usp=sharing
+
+**Server**: A server is a computer program or device that provides a service to another computer program and its user, also known as the client. In this case, we will be using one server.
+
+**Web Server (Nginx)**: The primary function of a web server is to store, process, and deliver web pages to clients. The communication between client and server takes place using the Hypertext Transfer Protocol (HTTP). In this design, Nginx will be used as the web server.
+
+**Application Server**: An application server is a server that hosts applications. It's responsible for the execution of procedures (programs, routines, scripts) for supporting the application.
+
+**Application Files (My Code Base)**: These are the files that make up your website or web application. They could include HTML, Python, PHP, CSS, JavaScript, images, and any other resources needed for the website to function.
+
+**Database (MySQL)**: The database is where your site's data is stored. This could include user data, site content, or any other data your site needs to function. we'll be using MySQL for this.
+
+**Domain Name (foobar.com)**: The domain name is the human-readable address of your website. It's what users type into their browser to reach your site. we'll need to configure a www record for the domain name that points to the server IP (8.8.8.8)
+
+The server communicates with the user's computer via HTTP (or HTTPS for secure communication). The user's browser sends HTTP requests to the server, which responds with the requested data, and this data is then rendered by the user's.
+
+This infrastructure suffers from a few limitations:
+
+**SPOF (Single Point of Failure)**: If the single server goes down, the entire website goes down because there's no redundancy in this setup.
+
+**Downtime during maintenance**: If the server needs to be restarted for maintenance or to deploy new code, the website will be unavailable during that time.
+
+**Cannot scale**: If the website receives a lot of traffic, this setup cannot scale to meet the demand. It's limited by the resources of the single server.
