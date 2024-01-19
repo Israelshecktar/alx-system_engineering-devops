@@ -1,5 +1,19 @@
-# A Puppet Script to install flask from pip3 and ensure its version 2.1.0
-package { 'flask':
-  ensure   => '2.1.0',
-  provider => 'pip3',
+# File: 1-install_a_package.pp
+# This manifest installs Flask 2.0.2 and Werkzeug 2.2.2 using pip3.
+
+package { 'Flask':
+ ensure  => '2.0.2', # Specify the version of the package.
+ provider => 'pip3', # Specify the provider to use pip3 for Python 3.
+ require => Package['python3-pip'], # Ensure pip3 is installed before trying to install Flask.
+}
+
+package { 'Werkzeug':
+ ensure  => '2.2.2', # Specify the version of the package.
+ provider => 'pip3', # Specify the provider to use pip3 for Python 3.
+ require => Package['python3-pip'], # Ensure pip3 is installed before trying to install Werkzeug.
+}
+
+# Ensure pip3 is available on the system.
+package { 'python3-pip':
+ ensure => installed,
 }
