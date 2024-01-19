@@ -1,6 +1,6 @@
-# This manifest executes the pkill command to terminate the 'killmenow' process.
+# A Puppet manifest to kill a process
 
 exec { 'killmenow':
-  command    => '/usr/bin/pkill -f killmenow',
-  onlyif => '/usr/bin/pgrep killmenow',
+  command => '/usr/bin/pkill killmenow',
+  onlyif  => '/usr/bin/pgrep killmenow',
 }
