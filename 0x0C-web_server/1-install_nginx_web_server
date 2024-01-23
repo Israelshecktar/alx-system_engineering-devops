@@ -11,5 +11,7 @@ sudo ufw 'Nginx HTTP'
 # Create a sample HTML file
 echo "Hello World!" | sudo tee /var/www/html/index.html
 
+#configure Nginx to listen to port 80
+sed -i 's/listen 80 default_server;/listen 80;/g' /etc/nginx/sites-available/default
 sudo nginx -t
 sudo service nginx restart
