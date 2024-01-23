@@ -12,3 +12,9 @@ USERNAME=$3
 SSH_KEY=$4
 
 scp -i $SSH_KEY -o StrictHostKeyChecking=no $FILE $USERNAME@$SERVER_IP:~/
+#checking if file transfer was succesful
+if [ #? -qe 0]
+then
+    echo "FILE WAS TRANSFERRED SUCCESFULLY"
+else
+    echo "FILE TRANSFER FAILED"

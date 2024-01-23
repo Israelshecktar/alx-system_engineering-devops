@@ -1,20 +1,14 @@
 #!/usr/bin/env bash
 # Update package lists
-sudo apt update
+sudo apt-get update
 # Install Nginx
-sudo apt install -y nginx
+sudo apt-get install -y nginx
+
+#enable firewall to allow http for nginx
+sudo ufw 'Nginx HTTP'
 
 # Create a sample HTML file
-echo "Hello World!" > /var/www/html/index.html
+echo "Hello World!" | sudo tee /var/www/html/index.html
 
-# check if Nginx is already running and start if not
-if ! ps aux | grep -q '[n]ginx'; then
-    /etc/init.d/nginx start
-fi
-
-# Configure Nginx to listen on port 80
-sudo sed -i 's/listen 80 default_server;/listen 80;/g' /etc/nginx/sites-available/default
-
-/etc/init.d/nginx restart
-
-unset DEBIAN_FRONTEND
+sudo nginx -t
+sudo service nginx reload
