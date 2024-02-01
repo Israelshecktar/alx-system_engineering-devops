@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # make it even sweet
 
+#create a symbolic link
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 #start nginx
