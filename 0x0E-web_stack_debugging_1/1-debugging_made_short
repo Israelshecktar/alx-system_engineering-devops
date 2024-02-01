@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
+# make it even sweet
 
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
+#start nginx
 service nginx start
 
+#make it short
 kill "$(pgrep 'nginx' | head -1)"
