@@ -11,7 +11,7 @@ def top_ten(subreddit):
         10 hot posts listed for a given subreddit.
         """
         url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
-        headers = {'User-Agent': 'shecktar 1.0'}
+        headers = {'User-Agent': 'My User Agent 1.0'}
         params = {
               "limit": 10
         }
