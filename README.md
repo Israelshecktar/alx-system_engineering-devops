@@ -1,1 +1,1 @@
-Please read the F manual before proceeding
+please read the F manual before proceeding
