@@ -1,21 +1,11 @@
 # Define a class to manage Nginx configuration
-class nginx_config {
-  # Set the desired ULIMIT value
-  $ulimit_value = 4096
-
-  # Define the file resource to manage /etc/default/nginx
-  file { '/etc/default/nginx':
-    ensure  => 'file',
-    content => "ULIMIT=\"-n ${ulimit_value}\"\n",
-    notify  => Service['nginx'],
-  }
-
-  # Define the service resource to manage Nginx service
-  service { 'nginx':
-    ensure => 'running',
-    enable => true,
-  }
+exec { 'fix--for-nginx':
+  command => '/bin/sed -i "s/15/4096/" /etc/default/nginx',
+  path    => '/usr/local/bin/:/bin/',
 }
 
-# Apply the nginx_config class
-include nginx_config
+# Define the service resource to manage Nginx service
+exec { 'nginx-restart':
+  command => '/etc/init.d/nginx restart',
+  path    => '/etc/init.d/',
+}
